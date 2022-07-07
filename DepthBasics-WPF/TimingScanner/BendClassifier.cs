@@ -83,7 +83,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             float diffMiddPoint = Math.Abs(bendMiddPoint - bendMiddPointApprox);
             if (diffMiddPoint < err2 * bendMiddPoint)
             {
-                isBend1 += " true2";  // udaljenost za vrijednost a *** POTREBNO OBJESNJENJE!
+                isBend1 += " true2";  // udaljenost za vrijednost a *** POTREBNO OBJASNJENJE!
             }
             else
             {
@@ -95,18 +95,18 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             //isBend1 = str + "\n\n" + strA + "\n\n" + arr.Length.ToString() + "\n\n" + floatArr.Length.ToString() + "\n\n" + angle.ToString() + "\n\n" + floatArr[57].ToString() + " " + floatArr[58].ToString();
 
             //return str + "\n\n" + strA + "\n\n" + strCircEq + "\n\n" + isBend1;
-            return "\n\n" + isBend1;
+            return isBend1;
         }
-        public static string detectBend1(Mat srcImg, float err1, float err2)
+        public static string detectBend1(Mat srcImg, float err1 = 0.05f, float err2 = 0.05f)
         {
             int scaleWidth = 400;
             Mat img = new Mat();
             srcImg.CopyTo(img);
 
             img = scaledResize(img, scaleWidth);
-            ShowImage("Skalirane dimenzije - sirina 400", img);
+            //ShowImage("Skalirane dimenzije - sirina 400", img);
             img = LeftHalf(img);
-            ShowImage("Lijeva polovina", img);
+            //ShowImage("Lijeva polovina", img);
 
             return detectBend1FromHalf(img, err1, err2);
               
@@ -118,7 +118,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             srcImg.CopyTo(img);
 
             img = scaleImageToOnlyContour(MatRotate(img, 315));
-            ShowImage("Rotirana za 315", img);
+            //ShowImage("Rotirana za 315", img);
 
             return detectBend2Rotated45(img);
         }
@@ -134,7 +134,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
 
             int scaleWidth = 400;
             img = scaledResize(img, scaleWidth);
-            ShowImage("Skalirane dimenzije - sirina 400", img);
+            //ShowImage("Skalirane dimenzije - sirina 400", img);
 
             int[] arr = getArrayY(img);
             string str = "";
@@ -193,7 +193,8 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             }
 
 
-            return isBend2 + "\n\n" + str + "\n\n" + strA;
+            //return isBend2 + "\n\n" + str + "\n\n" + strA;
+            return isBend2;
         }
 
         public static string detectBend4(Mat srcImg)
@@ -202,7 +203,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             srcImg.CopyTo(img);
 
             img = scaleImageToOnlyContour(LeftHalf(img));
-            ShowImage("Lijeva polovina za luk 4", img);
+            //ShowImage("Lijeva polovina za luk 4", img);
 
             return detectBend2Rotated45(img);
         }
@@ -216,11 +217,11 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             srcImg.CopyTo(img);
 
             img = scaleImageToOnlyContour(LeftHalf(img));
-            ShowImage("Lijeva polovina za luk 5", img);
+            //ShowImage("Lijeva polovina za luk 5", img);
 
             int scaleWidth = 200;
             img = scaledResize(img, scaleWidth);
-            ShowImage("Skalirane dimenzije za luk 6 - sirina 200", img);
+            //ShowImage("Skalirane dimenzije za luk 6 - sirina 200", img);
 
             int[] arrY = getArrayY(img);
             string strY = "";
@@ -254,7 +255,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             int[] arrYBeforeHalf = getArrayY(img);
 
             img = scaleImageToOnlyContour(LeftHalf(img));
-            ShowImage("Lijeva polovina za isjecak bez ravnog", img);
+            //ShowImage("Lijeva polovina za isjecak bez ravnog", img);
 
             int[] arrY = getArrayY(img);
             string strY = "";
@@ -279,8 +280,8 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
 
             isSecWithoutFlat = isBendSectionArrFromHalf(floatArrY, r, 0.03f, 3);
 
-            return "Poluprecnik: " + Math.Pow(r, 2).ToString() + " " + r.ToString() + " " + a.ToString() + " " + b.ToString() + "\n\n" + isSecWithoutFlat;
-
+            //return "Poluprecnik: " + Math.Pow(r, 2).ToString() + " " + r.ToString() + " " + a.ToString() + " " + b.ToString() + "\n\n" + isSecWithoutFlat;
+            return isSecWithoutFlat;
         }
 
         public static string isBendSectionArrFromHalf(float[] samples, float r, float errFromCircle = 0.05f, int allowedBadSequence = 3)
@@ -333,11 +334,11 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
             srcImg.CopyTo(img);
 
             img = scaleImageToOnlyContour(LeftHalf(img));
-            ShowImage("Lijeva polovina za luk 5", img);
+            //ShowImage("Lijeva polovina za luk 5", img);
 
             int scaleWidth = 200;
             img = scaledResize(img, scaleWidth);
-            ShowImage("Skalirane dimenzije - sirina 200 - Luk 5", img);
+            //ShowImage("Skalirane dimenzije - sirina 200 - Luk 5", img);
 
             int[] arrY = getArrayY(img);
             string strY = "";
@@ -394,11 +395,11 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
 
             if (isBend3 == "true")
             {
-                return "Class 3: " + isBend3;
+                return "Class 3 detected!";
             }
             else
             {
-                return "Class 5: " + isBend5;
+                return "Class 5 detected!";
             }
         }
 

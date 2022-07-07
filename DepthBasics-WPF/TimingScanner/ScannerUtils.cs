@@ -143,7 +143,7 @@ namespace Microsoft.Samples.Kinect.DepthBasics.TimingScanner
 
             Mat elementErode1 = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(4, 4), new Point(1, 1));
             Mat elementDilate1 = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(7, 7), new Point(3, 3));
-            Mat elementErode2 = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3), new Point(1, 1));
+            Mat elementErode2 = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(5, 5), new Point(1, 1));
             
             //Mat elementDilate1 = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(3, 3), new Point(1, 1));
             //Mat elementErode = Cv2.GetStructuringElement(MorphShapes.Ellipse, new Size(19, 19), new Point(-1, -1));

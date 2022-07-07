@@ -106,10 +106,9 @@ namespace Microsoft.Samples.Kinect.DepthBasics
 
             //Only for reading one frame from csv file:  !!! ...
 
-            this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\HE\dordje.csv");
-            //this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\dordje_nivelisan_pravilan_luk\dordje.csv");
+            //this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\HE\dordje.csv");
+            this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\dordje_nivelisan_pravilan_luk\dordje.csv");
             //this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\isecak1\dordje.csv");
-            //this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\isecak2\dordje.csv");
             //this.depthFrameData = ReadDepthFrameDataFromCSV(@"C:\Users\Djordje\Documents\TIMING_skener\Primjeri lukova\ve\dordje.csv");
 
             ProcessDepthFrameDataFromCsv(this.depthFrameData, this.depthPixels, 0, ushort.MaxValue);
@@ -412,6 +411,45 @@ namespace Microsoft.Samples.Kinect.DepthBasics
             //ShowImage("Rotirana za 315", this.testImage);
 
 
+          
+            
+            if (detectBend1(this.testImage).Contains("false"))
+            {
+                if (detectBend2(this.testImage).Contains("false"))
+                {
+                    if (detectBend4(this.testImage).Contains("false"))
+                    {
+                        if (detectBend6(this.testImage).Contains("false"))
+                        {
+                            if (isSectionWithoutFlat(this.testImage).Contains("false"))
+                            {
+                                MessageBox.Show(detectBend3or5(this.testImage));
+                            }
+                            else
+                            {
+                                MessageBox.Show("Class 3.1 detected!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Class 6 detected!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Class 4 detected!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Class 2 detected!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Class 1 detected!");
+            }
+            
 
 
             ///   !!!!
@@ -438,10 +476,10 @@ namespace Microsoft.Samples.Kinect.DepthBasics
 
 
             //MessageBox.Show(isSectionWithoutFlat(this.testImage));
-            MessageBox.Show(detectBend3or5(this.testImage));
+            //MessageBox.Show(detectBend3or5(this.testImage));
 
 
-            //MessageBox.Show(detectBend1(this.testImage, 0.03f, 0.05f));
+            //MessageBox.Show(detectBend1(this.testImage, 0.05f, 0.05f));
             //MessageBox.Show(detectBend2(this.testImage));
             //MessageBox.Show(detectBend5(this.testImage));
             //MessageBox.Show(detectBend6(this.testImage));
